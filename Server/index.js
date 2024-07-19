@@ -89,3 +89,5 @@ app.get("/noteapp", (request, response) => {
     path.join(__dirname, "../Client/noteapp/noteapp.html")
   );
 });
+
+module.exports = app;
