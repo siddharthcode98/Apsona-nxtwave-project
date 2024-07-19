@@ -3,9 +3,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/", express.static("public"));
-app.use("/noteapp", express.static("noteapp"));
-
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const path = require("path");
@@ -15,6 +12,11 @@ let db = null;
 const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
+
+// app.use("/", express.static("public"));
+// app.use("/noteapp", express.static("noteapp"));
+app.use("/noteapp", express.static(path.join(__dirname, "../Client/noteapp")));
+app.use("/", express.static(path.join(__dirname, "../Client/public")));
 
 // app.set("view engine", "ejs");
 // app.set("views", path.resolve("./views"));
@@ -78,6 +80,12 @@ app.post("/register", async (request, response) => {
 //   return response.redirect("/noteapp");
 // });
 
+app.get("/", (request, response) => {
+  return response.sendFile(path.join(__dirname, "../Client/public/index.html"));
+});
+
 app.get("/noteapp", (request, response) => {
-  return response.sendFile(path.join(__dirname, "noteapp", "noteapp.html"));
+  return response.sendFile(
+    path.join(__dirname, "../Client/noteapp/noteapp.html")
+  );
 });
