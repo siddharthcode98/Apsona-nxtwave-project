@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "Server/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "Client/public/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Client/noteapp/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/Server/(.*)",
+      "dest": "/Server/index.js"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/Client/public/$1"
+    },
+    {
+      "src": "/noteapp/(.*)",
+      "dest": "/Client/noteapp/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/Client/public/index.html"
+    },
+    {
+      "src": "/noteapp",
+      "dest": "/Client/noteapp/noteapp.html"
+    }
+  ]
+}
