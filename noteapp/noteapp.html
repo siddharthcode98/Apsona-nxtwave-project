@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/ac42c3b1f7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./noteapp.css" />
+  </head>
+  <body class="app-container">
+    <div id="noteapp" class="noteapp-container">
+      <div class="search-input-container">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search your notes here"
+        />
+        <button id="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <h1 class="note-app-heading">Note Taking App</h1>
+      <div class="searchbar-container">
+        <input
+          type="text"
+          id="note-input"
+          placeholder="Please Enter you Note"
+        />
+        <button type="button" id="createbtn">Create</button>
+      </div>
+
+      <ul id="list-container"></ul>
+    </div>
+  </body>
+  <script src="noteapp.js"></script>
+</html>
