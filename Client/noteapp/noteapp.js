@@ -1,7 +1,7 @@
 let userLogin = document.getElementById("userlogin");
 let noteApp = document.getElementById("noteapp");
 
-// noteApp.style.display = "none";
+
 
 let createBtn = document.getElementById("createbtn");
 let listContainer = document.getElementById("list-container");
@@ -9,14 +9,13 @@ let trashListContainer = document.createElement("div");
 let trashListHeading = document.createElement("h2");
 let trashListContainerElement = document.createElement("ul");
 trashListContainerElement.id = "trash-list-container-element";
-//trashListContainerElement.innerHTML = "trash list Container";
+
 
 let searchBarElement = document.getElementById("search-input");
 let searchBarBtn = document.getElementById("search-btn");
 
 function getNoteListFromLocalStorage() {
   let initalNoteList = localStorage.getItem("noteList");
-  //console.log(initalNoteList);
   let parsedNoteList = JSON.parse(initalNoteList);
   if (parsedNoteList === null) {
     return [];
@@ -27,7 +26,6 @@ function getNoteListFromLocalStorage() {
 
 function getTrashListFromLocalStorage() {
   let initaltrashList = localStorage.getItem("trashListContainer");
-  //console.log(initalNoteList);
   let parsedtrashList = JSON.parse(initaltrashList);
   if (parsedtrashList === null) {
     return [];
@@ -41,14 +39,10 @@ function searchNoteLists(val) {
     return item.text.toLowerCase().includes(val);
   });
   localStorage.setItem("noteList", JSON.stringify(searchedResults));
-
-  // for (let note of searchedResults) {
-  //   displayNoteList(note);
-  // }
 }
 
 let noteList = getNoteListFromLocalStorage();
-//console.log(noteList);
+
 let noteCount = noteList.length;
 let trashList = getTrashListFromLocalStorage(); 
 
@@ -60,8 +54,6 @@ searchBarBtn.addEventListener("click", () => {
 
 function trashNoteList(note) {
   trashList.push(note);
-  //console.log(note);
-  //console.log(trashList);
   displayTrashList(note);
   localStorage.setItem("trashListContainer", JSON.stringify(trashList));
 }
@@ -69,10 +61,7 @@ function trashNoteList(note) {
 function onClickDeleteNote(id) {
   let deleteNoteElement = document.getElementById(id);
   listContainer.removeChild(deleteNoteElement);
-
   let deleteNoteIndex = noteList.findIndex((item) => item.id === id);
-  //console.log(deleteNoteIndex);
-  //console.log(noteList);
   let deletedNoteList = noteList.splice(deleteNoteIndex, 1);
   let [deletedNoteItem] = deletedNoteList;
   trashNoteList(deletedNoteItem);
@@ -90,8 +79,6 @@ function onChangeSelectColor(color, id) {
       return item;
     }
   });
-
-  //console.log(updatedNoteList);
 
   localStorage.setItem("noteList", JSON.stringify(updatedNoteList));
 }
@@ -178,35 +165,11 @@ function displayTrashList(note) {
   TextArea.innerHTML = note.text;
   TextArea.classList.add("text-area");
   listElement.classList.add("list-Element");
-
-  // let selectColor = document.createElement("select");
-
-  // const option1 = document.createElement("option");
-  // option1.value = "#FF5733";
-  // option1.text = "Red";
-
-  // const option2 = document.createElement("option");
-  // option2.value = "#00008B";
-  // option2.text = "Blue";
-
-  // const option3 = document.createElement("option");
-  // option3.value = "#8B8000";
-  // option3.text = "Yellow";
-
-  // selectColor.appendChild(option1);
-  // selectColor.appendChild(option2);
-  // selectColor.appendChild(option3);
-
-  // selectColor.addEventListener("change", (e) => {
-  //   onChangeSelectColor(e.target.value, note.id);
-  // });
-
   listElement.style.backgroundColor = note.bgColor;
   trashListContainer.append(trashListHeading);
   trashListHeading.innerHTML = "Trash-list";
   trashListHeading.classList.add("trash-list-heading");
   listElement.appendChild(TextArea);
-  //listElement.appendChild(selectColor);
   trashListContainerElement.appendChild(listElement);
   trashListContainerElement.classList.add("trash-list-container-element");
   trashListContainer.appendChild(trashListContainerElement);

@@ -11,17 +11,10 @@ let db = null;
 
 const bcrypt = require("bcrypt");
 
-const jwt = require("jsonwebtoken");
-
-// app.use("/", express.static("public"));
-// app.use("/noteapp", express.static("noteapp"));
 app.use("/noteapp", express.static(path.join(__dirname, "../Client/noteapp")));
 app.use("/", express.static(path.join(__dirname, "../Client/public")));
 
-// app.set("view engine", "ejs");
-// app.set("views", path.resolve("./views"));
 
-const router = express.Router();
 
 const initializeDBAndServer = async () => {
   try {
@@ -76,9 +69,7 @@ app.post("/register", async (request, response) => {
   }
 });
 
-// router.post("/register", (req, res) => {
-//   return response.redirect("/noteapp");
-// });
+
 
 app.get("/", (request, response) => {
   return response.sendFile(path.join(__dirname, "../Client/public/index.html"));
