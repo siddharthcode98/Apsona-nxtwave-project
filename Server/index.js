@@ -90,4 +90,6 @@ app.get("/noteapp", (request, response) => {
   );
 });
 
-module.exports = app;
+module.exports = (req, res) => {
+  app(req, res);
+};
